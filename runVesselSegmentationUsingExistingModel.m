@@ -27,12 +27,6 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         % open the mask
         mask = imread(fullfile(masksPath, mskNames{i})) > 0;
         mask = mask(:,:,1);
-        
-        % MODIFIED: ESTIMATE THE FOV SIZE AND THE SCALE FACTOR
-        original_size = size(mask);
-        new_size_factor = config.downsample_factor;
-        mask = imresize(mask, new_size_factor, 'nearest');
-        testdata.masks = {mask};
 
         % UNARY FEATURES --------------------------------------------------
         selectedFeatures = config.features.unary.unaryFeatures;
