@@ -27,6 +27,7 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         % open the mask
         mask = imread(fullfile(masksPath, mskNames{i})) > 0;
         mask = mask(:,:,1);
+        testdata.masks{1} = mask;
 
         % UNARY FEATURES --------------------------------------------------
         selectedFeatures = config.features.unary.unaryFeatures;
