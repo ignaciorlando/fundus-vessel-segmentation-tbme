@@ -75,11 +75,6 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         % Segment test data to evaluate the model -------------------------
         [results.segmentations, results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
         
-        % MODIFIED
-        for i_s = 1 : length(results.segmentations)
-            results.segmentations{i_s} = imresize(results.segmentations{i_s}, original_size, 'nearest');
-        end
-        
         % Save the segmentations ------------------------------------------
         SaveSegmentations(config.resultsPath, config, results, model, testdata.filenames);
         
