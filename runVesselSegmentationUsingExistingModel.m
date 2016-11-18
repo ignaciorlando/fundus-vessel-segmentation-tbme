@@ -4,9 +4,9 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
     % if there are labels in the test data
     if config.thereAreLabelsInTheTestData
         % Open training data labels
-        [testdata.labels] = openVesselLabels(fullfile(config.training_data_path, 'labels'));
+        allLabels = openVesselLabels(fullfile(config.test_data_path, 'labels'));
     else
-        testdata.labels = [];
+        allLabels = [];
     end
 
     % set image and mask paths
@@ -71,7 +71,11 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         config.features.unary.pairwiseDimensionality = size(pairwisefeatures, 2);
         % compute the pairwise kernels
         testdata.pairwiseKernels = getPairwiseFeatures(pairwisefeatures, config.features.pairwise.pairwiseDeviations);
-    
+        % get current label
+        if ~isempty(allLabels)
+            testdata.labels{1} = allLabels{i};
+        end
+        
         % Segment test data to evaluate the model -------------------------
         [results.segmentations, results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
         
