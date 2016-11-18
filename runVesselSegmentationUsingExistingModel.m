@@ -18,6 +18,14 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
     % ...and mask names
     mskNames = getMultipleImagesFileNames(masksPath);
     
+    % initialize an array of quality values
+    results.qualityMeasures.se = zeros(size(imgNames));
+    results.qualityMeasures.sp = zeros(size(imgNames));
+    results.qualityMeasures.acc = zeros(size(imgNames));
+    results.qualityMeasures.precision = zeros(size(imgNames));
+    results.qualityMeasures.fMeasure = zeros(size(imgNames));
+    results.qualityMeasures.matthews = zeros(size(imgNames));
+    
     % for each image, verify if the feature file exist. if it is not there,
     % then we should compute it
     for i = 1 : length(imgNames)
@@ -77,11 +85,27 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         end
         
         % Segment test data to evaluate the model -------------------------
-        [results.segmentations, results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
+        [current_results.segmentations, current_results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
         
         % Save the segmentations ------------------------------------------
-        SaveSegmentations(config.resultsPath, config, results, model, testdata.filenames);
+        SaveSegmentations(config.resultsPath, config, current_results, model, testdata.filenames);
+        
+        % Save current performance
+        results.qualityMeasures.se(i) = current_results.qualityMeasures.se;
+        results.qualityMeasures.sp(i) = current_results.qualityMeasures.sp;
+        results.qualityMeasures.acc(i) = current_results.qualityMeasures.acc;
+        results.qualityMeasures.precision(i) = current_results.qualityMeasures.precision;
+        results.qualityMeasures.fMeasure(i) = current_results.qualityMeasures.fMeasure;
+        results.qualityMeasures.matthews(i) = current_results.qualityMeasures.matthews;
         
     end
+    
+    % Take average performance
+    results.qualityMeasures.se(i) = mean(results.qualityMeasures.se);
+    results.qualityMeasures.sp(i) = mean(results.qualityMeasures.sp);
+    results.qualityMeasures.acc(i) = mean(results.qualityMeasures.acc);
+    results.qualityMeasures.precision(i) = mean(results.qualityMeasures.precision);
+    results.qualityMeasures.fMeasure(i) = mean(results.qualityMeasures.fMeasure);
+    results.qualityMeasures.matthews(i) = mean(results.qualityMeasures.matthews);
     
 end
