@@ -7,5 +7,6 @@ function allNames = getMultipleImagesFileNames(directory)
     allNames(strcmp(allNames, '..')) = [];
     allNames(strcmp(allNames, '.')) = [];
     allNames(strcmp(allNames, 'Thumbs.db')) = [];
+    allNames(strcmp(allNames, '.DS_Store')) = [];
     allNames = removeFileNamesWithExtension(allNames, 'mat');
 end

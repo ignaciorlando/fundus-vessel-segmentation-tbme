@@ -1,33 +1,15 @@
 
 warning('off','all');
 
-
-[ret, hostname] = system('hostname');
-hostname = strtrim(lower(hostname));
-% Lab computer
-if strcmp(hostname, 'orlando-pc')
-    % Root dir where the data sets are located
-    rootDatasets = 'C:\_vessels\';
-    % Root folder where the results are going to be stored
-    rootResults = 'C:\_vessels\results';
-elseif strcmp(hostname, 'animas')
-    % Root dir where the data sets are located
-    rootDatasets = '/home/ignacioorlando/nacho-research/vessel2016characterization/_vessels/';
-    % Root folder where the results are going to be stored
-    rootResults = '/home/ignacioorlando/nacho-research/vessel2006characterization/_vessels/tests';
-else
-    % Root dir where the data sets are located
-    rootDatasets = 'C:\_vessels\';
-    % Root folder where the results are going to be stored
-    rootResults = 'C:\_vessels\results';
-end
+rootDatasets = '/Users/ignaciorlando/Documents/_vessels';
+rootResults = '/Users/ignaciorlando/Documents/_vessels/results';
 
 
 % Datasets names
 datasetsNames = {...
-    'DRIVE-MESSIDORsmall' ...
+    'DRIVE' ...
 };
-thereAreLabelsInTheTestData = 0 * zeros(size(datasetsNames));
+thereAreLabelsInTheTestData = 1;
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set
@@ -48,8 +30,8 @@ for experiment = 1 : length(datasetsNames)
                
         % Get the configuration
         [config] = getConfiguration_GenericDataset(datasetsNames{experiment}, ... % data set name
-                                                   strcat(rootDatasets, datasetsNames{experiment}), ... % data set folder
-                                                   strcat(rootResults, filesep, datasetsNames{experiment}), ... % results folder
+                                                   fullfile(rootDatasets, datasetsNames{experiment}), ... % data set folder
+                                                   fullfile(rootResults, datasetsNames{experiment}), ... % results folder
                                                    learnC, ... % learn C?
                                                    crfVersions{crfver}, ... % crf version
                                                    cValue ... % default C value

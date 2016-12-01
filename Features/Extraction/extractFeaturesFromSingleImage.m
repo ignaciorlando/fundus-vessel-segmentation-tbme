@@ -25,14 +25,6 @@ function [features_array] = extractFeaturesFromSingleImage(imagesPath, imgName, 
 
             % open the image
             image = imread(fullfile(imagesPath, imgName));
-            
-            % MODIFIED: RESCALE IMAGE
-            downsampled_image = uint8(zeros(size(mask, 1), size(mask, 2), 3));
-            for i = 1 : size(image, 3)
-                downsampled_image(:,:,i) = imresize(image(:,:,i), size(mask));
-            end
-            image = downsampled_image;
-            
             % preprocess the image
             [image, biggerMask] = preprocessing(image, mask, config.preprocessing);
             % get the function

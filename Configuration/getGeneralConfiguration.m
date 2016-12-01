@@ -38,15 +38,6 @@ function [config] = getGeneralConfiguration(config)
         options.Zana2001.l = ceil(9 * config.scale_factor);
         options.Zana2001.winsize = ceil(7 * config.scale_factor);
         options.Zana2001.Intensities = options.Intensities;
-    % Azzopardi
-        options.Azzopardi2015.symmetric.sigma0 = 3 * config.scale_factor;
-        options.Azzopardi2015.symmetric.sigma = 2.4 * config.scale_factor;
-        options.Azzopardi2015.symmetric.len = ceil((0:2:8) * config.scale_factor);
-        options.Azzopardi2015.symmetric.alpha = 0.7 * config.scale_factor;
-        options.Azzopardi2015.asymmetric.sigma0 = 2 * config.scale_factor;
-        options.Azzopardi2015.asymmetric.sigma = 1.8 * config.scale_factor;
-        options.Azzopardi2015.asymmetric.len = ceil((0:2:22) * config.scale_factor);
-        options.Azzopardi2015.asymmetric.alpha = 0.1 * config.scale_factor;
         
     % RESULTS ------------------------------------------------------------
 
@@ -55,14 +46,12 @@ function [config] = getGeneralConfiguration(config)
         @Nguyen2013, ...
         @Soares2006, ...
         @Zana2001, ...
-        @Azzopardi2015 ...
         };
     config.features.numberFeatures = length(config.features.features);
     config.features.featureNames = {...
         'nguyen', ...
         'soares', ...
         'zana', ...
-        'azzopardi' ...
     	};
 
     % Assign options
@@ -70,7 +59,6 @@ function [config] = getGeneralConfiguration(config)
         options.Nguyen2013, ...
         options.Soares2006, ...
         options.Zana2001 ...
-        options.Azzopardi2015 ...
         };
     
     % ---------------------------------------------------------------------
@@ -80,7 +68,7 @@ function [config] = getGeneralConfiguration(config)
     end
 
     % Theta_p learning
-    config.theta_p.values = [3 7 5 15];
+    config.theta_p.values = [3 7 5];
     config.theta_p.values = config.theta_p.values * config.scale_factor;
 
     % ---------------------------------------------------------------------

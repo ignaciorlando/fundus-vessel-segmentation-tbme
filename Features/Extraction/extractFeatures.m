@@ -6,16 +6,9 @@ function [features, dimensionality, numberOfPixels, masks, imgNames] = extractFe
 %
 
     % retrieve image names...
-    imgNames = dir(imagesPath);
-    imgNames = {imgNames.name};
-    imgNames(strcmp(imgNames, '..')) = [];
-    imgNames(strcmp(imgNames, '.')) = [];
-    imgNames = removeFileNamesWithExtension(imgNames, 'mat');
+    imgNames = getMultipleImagesFileNames(imagesPath);
     % ...and mask names
-    mskNames = dir(masksPath);
-    mskNames = {mskNames.name};
-    mskNames(strcmp(mskNames, '..')) = [];
-    mskNames(strcmp(mskNames, '.')) = [];
+    mskNames = getMultipleImagesFileNames(masksPath);
     % initialize number of pixels
     numberOfPixels = 0;
     
