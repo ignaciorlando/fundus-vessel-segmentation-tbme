@@ -41,5 +41,6 @@ function [results] = runVesselSegmentation(config)
     
     % Evaluate the learned model on the test data    
     [results] = runVesselSegmentationUsingExistingModel(config, model);
+    save(fullfile(config.resultsPath, 'results.mat'), 'results');
     
 end
