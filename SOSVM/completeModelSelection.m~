@@ -255,12 +255,12 @@ function [model, c, qualityOverValidation, config] = completeModelSelection(trai
                 [~, qualityOverValidation, parameters{i}] = learnCRFPotentials(config, trainingdata, validationdata);
 
                 % Check if the quality measure is higher than the previous ones
-                if (getfield(qualityOverValidation, config.modelSelectionMetric) >= quality_best_theta_p_search)
-                    quality_best_theta_p_search = getfield(qualityOverValidation, config.modelSelectionMetric);
+                if (getfiel(qualityOverValidation, config.modelSelectionMetric) >= quality_best_theta_p_search)
+                    quality_best_theta_p_search = extractfield(qualityOverValidation, config.modelSelectionMetric);
                     theta_p_best = config.theta_p.values;
                 end                    
                 % Update the theta_p table
-                config.theta_p.ThetaPValuesTable(i,countt) = getfield(qualityOverValidation, config.modelSelectionMetric);
+                config.theta_p.ThetaPValuesTable(i,countt) = extractfield(qualityOverValidation, config.modelSelectionMetric);
                 
                 countt = countt + 1;
             end
@@ -360,7 +360,7 @@ function [model, c, qualityOverValidation, config] = completeModelSelection(trai
                 [~, qualityOverValidation, parameters{i}] = learnCRFPotentials(config, trainingdata, validationdata);
                                 
                 % Extract the quality value indicated in the field modelSelectionMetric
-                quality_values(i) = getfield(qualityOverValidation, config.modelSelectionMetric);
+                quality_values(i) = extractfield(qualityOverValidation, config.modelSelectionMetric);
                 
                 disp(quality_values);
                 
