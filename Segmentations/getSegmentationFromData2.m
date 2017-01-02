@@ -83,7 +83,11 @@ function [segmentation, qualityMeasures] = getSegmentationFromData2(config, mask
                 for k = 1 : size(pp, 3)
                     pp(:,:,k) = W_pairwises(k) * pp(:,:,k);
                 end
-                qualityMeasures.scores = - (unaryPotentials(:,:,2) + sum(pp,3));
+                if ~isempty(pp)
+                    qualityMeasures.scores = - (unaryPotentials(:,:,2) + sum(pp,3));
+                else
+                    qualityMeasures.scores = - unaryPotentials(:,:,2);
+                end
                 qualityMeasures.scores = qualityMeasures.scores(logical(mask));
 
                 % using only the unary scores

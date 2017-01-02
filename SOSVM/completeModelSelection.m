@@ -65,7 +65,7 @@ function [model, c, qualityOverValidation, config] = completeModelSelection(trai
         % update the fixed features set with the new feature
         fixed_UnaryFeatures = find(config.features.unary.unaryFeatures)
         % update the value corresponding to the given combination of features
-        quality_UnaryFeatures_best = extractfield(qualityOverValidation, config.modelSelectionMetric)
+        quality_UnaryFeatures_best = getfield(qualityOverValidation, config.modelSelectionMetric)
         
     else
         
@@ -129,7 +129,7 @@ function [model, c, qualityOverValidation, config] = completeModelSelection(trai
 
                     % Extract the quality value indicated in the field
                     % modelSelectionMetric
-                    quality_values(i) = extractfield(qualityOverValidation, config.modelSelectionMetric);
+                    quality_values(i) = getfield(qualityOverValidation, config.modelSelectionMetric);
 
                     % Display actual state of quality_values
                     disp(quality_values);

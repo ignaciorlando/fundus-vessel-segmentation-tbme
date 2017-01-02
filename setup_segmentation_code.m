@@ -14,4 +14,4 @@ vl_setup;
 
 % Compile relevant files
 mex ./CRF/CRF_1.0/fullyCRFwithGivenPairwises.cpp ./CRF/CRF_1.0/densecrf.cpp ./CRF/CRF_1.0/util.cpp 
-mex ./CRF/CRF_1.0/pairwisePart.cpp ./CRF/CRF_1.0/densecrf.cpp ./CRF/CRF_1.0/util.cpp
+mex ./CRF/CRF_1.0/pairwisePart.cpp ./CRF/CRF_1.0/util.cpp
