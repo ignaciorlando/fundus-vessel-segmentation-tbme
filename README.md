@@ -1,8 +1,8 @@
 #Retinal Vessel Segmentation
-Created by Jos� Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Cient�ficas y T�cnicas, Argentina), under the supervision of Matthew B. Blaschko (KU Leuven, Belgium).
+Created by José Ignacio Orlando (Nacho) at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of Matthew B. Blaschko (KU Leuven, Belgium).
 
 ##Introduction
-This code corresponds to our paper published at IEEE TBME 2016. It allows you to perform vessel segmentation in color fundus images.
+This code corresponds to a modified version of our method published in IEEE TBME 2016. It allows you to perform vessel segmentation in color fundus images.
 
 ##License
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
