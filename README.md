@@ -34,11 +34,11 @@ There are also some third party libraries included in our code. If you use it, p
 
 **Responses to 2D Gabor wavelets by Soares et al.:** J. V. Soares et al.: Retinal vessel segmentation using the 2-D Gabor wavelet and supervised classification. IEEE Transactions on Medical Imaging, vol. 25, no. 9, 2006
 
-**Line detectors by Nguyen et al.:** U. T. Nguyen et al.: An effective retinal blood vessel segmentation method using multi-scale line detection. Pattern Recognition, vol. 46, no. 3, pp. 703�715, 2013.
+**Line detectors by Nguyen et al.:** U. T. Nguyen et al.: An effective retinal blood vessel segmentation method using multi-scale line detection. Pattern Recognition, vol. 46, no. 3, pp. 703-715, 2013.
 
-**Efficient inference in fully connected CRF by Krahenbul and Koltun (C++ implementation)**: P. Krahenbuhl and V. Koltun: Efficient inference in fully connected CRFs with Gaussian edge potentials. Advances in Neural Information Processing Systems, 2012, pp. 109�117. (if you use the MEX function that wraps this code please also cite our IEEE TMBE and MICCAI papers)*
+**Efficient inference in fully connected CRF by Krahenbul and Koltun (Cpp implementation)**: P. Krahenbuhl and V. Koltun: Efficient inference in fully connected CRFs with Gaussian edge potentials. Advances in Neural Information Processing Systems, 2012, pp. 109-117. (if you use the MEX function that wraps this code please also cite our IEEE TMBE and MICCAI papers)
 ----------------------------
-**Graph-cut for local neighborhood based CRF inference:** Y. Boykov and V. Kolmogorov: An experimental comparison of mincut/max-flow algorithms for energy minimization in vision. IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 26, no. 9, pp. 1124�1137, 2004.
+**Graph-cut for local neighborhood based CRF inference:** Y. Boykov and V. Kolmogorov: An experimental comparison of mincut/max-flow algorithms for energy minimization in vision. IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 26, no. 9, pp. 1124-1137, 2004.
 
 
 
