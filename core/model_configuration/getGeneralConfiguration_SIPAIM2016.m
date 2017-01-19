@@ -1,5 +1,5 @@
-function [config] = getGeneralConfiguration(config)
-% getGeneralConfiguration Prepares the config structure with the
+function [config] = getGeneralConfiguration_SIPAIM2016(config)
+% getGeneralConfiguration_SIPAIM2016 Prepares the config structure with the
 % configuration of features
 % [config] = getGeneralConfiguration(config)
 % config: prefilled config structure
@@ -15,7 +15,6 @@ function [config] = getGeneralConfiguration(config)
     config.preprocessing.erosion = 5;
     config.preprocessing.winSize = ceil(40 * config.scale_factor);
     config.preprocessing.enhancement = 'clahe';
-    %config.preprocessing.enhancement = 'no';%'clahe';
 
     % ---------------------------------------------------------------------
     % Model selection metric
@@ -31,9 +30,7 @@ function [config] = getGeneralConfiguration(config)
         options.Nguyen2013.w = ceil(15 * config.scale_factor);   
         options.Nguyen2013.step = ceil(2 * config.scale_factor);
     % Soares
-        %options.Soares2006.scales = ceil([2 2*sqrt(2) 3*sqrt(2) 4*sqrt(2) 3] * config.scale_factor);
         options.Soares2006.scales = ceil([2 3 4 5] * config.scale_factor);
-        %options.Soares2006.scales = ceil([2 3] * config.scale_factor);
     % Zana
         options.Zana2001.l = ceil(9 * config.scale_factor);
         options.Zana2001.winsize = ceil(7 * config.scale_factor);
@@ -63,7 +60,7 @@ function [config] = getGeneralConfiguration(config)
         'soares', ...
         'zana', ...
         'azzopardi' ...
-    	};
+    };
 
     % Assign options
     config.features.featureParameters = {...
@@ -71,7 +68,7 @@ function [config] = getGeneralConfiguration(config)
         options.Soares2006, ...
         options.Zana2001 ...
         options.Azzopardi2015 ...
-        };
+    };
     
     % ---------------------------------------------------------------------
     % CRF configuration

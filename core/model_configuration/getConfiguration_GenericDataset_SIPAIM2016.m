@@ -1,6 +1,6 @@
 
-function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
-% getConfiguration_GenericDataset  Get a generic configuration structure 
+function [config] = getConfiguration_GenericDataset_SIPAIM2016(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
+% getConfiguration_GenericDataset_SIPAIM2016  Get a generic configuration structure 
 %   [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
 %   datasetName: name of the data set
 %   datasetPath: path where the data set is stored
@@ -24,13 +24,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
 
     % ---------------------------------------------------------------------
     % Scale factor   
-    if (strcmp(datasetName,'DRIVE-MESSIDORsmall'))
-        config.scale_factor = 1;
-    elseif (strcmp(datasetName,'DRIVE-MESSIDORsmall-scale'))
-        config.scale_factor = 1.221374046;
-    else
-        config.scale_factor = 1;
-    end
+    config.scale_factor = 1;
     
     % ---------------------------------------------------------------------
     % Parameters to learn
@@ -64,7 +58,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     
     % ---------------------------------------------------------------------
     % General configuration
-    [config] = getGeneralConfiguration(config);
+    [config] = getGeneralConfiguration_SIPAIM2016(config);
     config.compute_scores = 1;
     
     % ---------------------------------------------------------------------
@@ -73,18 +67,13 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     % Unary features
     config.features.unary.unaryFeatures = zeros(config.features.numberFeatures, 1);
     config.features.unary.unaryFeatures(1) = 1;     % Nguyen
-    %config.features.unary.unaryFeatures(2) = 1;     % Soares
-    %config.features.unary.unaryFeatures(3) = 1;     % Zana
     config.features.unary.unaryFeatures(4) = 1;     % Azzopardi
 
     % Pairwise features
     config.features.pairwise.pairwiseFeatures = zeros(config.features.numberFeatures, 1);
     config.features.pairwise.pairwiseFeaturesDimensions = ones(length(config.features.features),1);
     if ~strcmp(crfVersion, 'up')
-        %config.features.pairwise.pairwiseFeatures(1) = 1;  % Nguyen
-        %config.features.pairwise.pairwiseFeatures(2) = 1;  % Soares
         config.features.pairwise.pairwiseFeatures(3) = 1;  % Zana
-        %config.features.pairwise.pairwiseFeatures(4) = 1;  % Azzopardi
     end
     
     
