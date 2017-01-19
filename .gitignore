@@ -1,0 +1,5 @@
+*.mat
+*.asv
+*.DS_Store
+*.m~
+*.configuration

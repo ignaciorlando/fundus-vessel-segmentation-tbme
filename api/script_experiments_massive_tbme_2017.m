@@ -1,25 +1,28 @@
 
+% SCRIPT_EXPERIMENTS_MASSIVE_TBME_2017
+% -------------------------------------------------------------------------
+% Run this code to perform multiple experiments on different data sets. 
+% The segmentation approach we used is the same than in:
+%
+% Orlando et al., A discriminatively trained fully connected condition
+% random field model for blood vessel segmentation in fundus images, 
+% IEEE TBME 2017.
+%
+% It will take each of the data sets listed in datasetsNames, and will
+% learn the CRF using each training set on each of the folders, and
+% evaluate on the images on the test set folder.
+% -------------------------------------------------------------------------
+%
+% Author: Jose Ignacio Orlando, Eng., applied mathematics
+% Pladema Institute, UNCPBA - CONICET
+% email address: jiorlando@conicet.gov.ar  
+% Website: github.com/ignaciorlando
+% Copyright 2017 - Jose Ignacio Orlando, Matthew B. Blaschko
+
 warning('off','all');
 
-rootDatasets = '/Users/ignaciorlando/Documents/_vessels';
-rootResults = '/Users/ignaciorlando/Documents/_vessels/results';
-
-
-% Datasets names
-datasetsNames = {...
-    'DRIVE' ...
-};
-thereAreLabelsInTheTestData = 1;
-
-% Flag indicating if the value of C is going to be tuned according to the
-% validation set
-learnC = 1;
-% CRF versions that are going to be evaluated
-crfVersions = {'fully-connected'};
-
-% C values
-cValue = 10^2;
-
+% Configure the script
+config_experiments_massive_tbme_2017
 
 % For each of the data sets
 results = cell(length(datasetsNames), length(crfVersions));
