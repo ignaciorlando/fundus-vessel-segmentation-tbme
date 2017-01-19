@@ -2,4 +2,5 @@
 *.asv
 *.DS_Store
 *.m~
-*.configuration
+*/configuration
+*/data

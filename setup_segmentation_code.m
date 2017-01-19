@@ -26,6 +26,7 @@ end
 
 % Add folders to path
 addpath(genpath(fullfile(root, 'api')));
+addpath(genpath(fullfile(root, 'data_preparation')));
 addpath(genpath(fullfile(root, 'configuration')));
 addpath(genpath(fullfile(root, 'core')));
 addpath(genpath(fullfile(root, 'evaluation')));
