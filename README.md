@@ -84,17 +84,14 @@ We include code for preparing DRIVE data for training and evaluating both the SI
 ### Installing
 
  1. Create a fork of this repository, or clone it by doing:
-
 ```git
 $ git clone https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme
 ```
-
  2. Update submodules doing:
 
  ```git
  $ git submodule update --init --recursive
  ```
-
  3. Open MATLAB (I used MATLAB R2015a) and move to `fundus-vessel-segmentation-tbme` folder.
  4. Run `setup_segmentation_code` to compile all MEX files and to add necessary folders to the MATLAB path. This will also create a copy of the configuration files in ```./default_configuration```, putting them into a new folder, namely ```./configuration```.
  5. Everything is ready to run!
