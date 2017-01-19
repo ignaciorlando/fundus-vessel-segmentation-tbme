@@ -1,5 +1,8 @@
 # Retinal blood vessel segmentation in fundus images
 
+![Results obtained on DRIVE using MICCAI 2014 method. From left to right: original color image, ground truth annotations provided by two different human graders, and results.](http://homes.esat.kuleuven.be/~mblaschk/projects/retina/qualitativeResults.png)
+
+
 This code corresponds to our paper on *IEEE Transactions on Biomedical Engineering* with Matthew B. Blaschko and Elena Prokofyeva, entitled **"A discriminatively trained fully connected conditional random field model for blood vessel segmentation in fundus images"**, which extends our *MICCAI 2014* paper **"Learning fully-connected CRFs for blood vessel segmentation in retinal images"**. We also include code in this repository to perform vessel segmentation as we did in our *SIPAIM 2016* paper, entitled **Convolutional neural network transfer for automated glaucoma identification**.
 
 If you use our TBME 2017 code in any publication, please include the following citations:
