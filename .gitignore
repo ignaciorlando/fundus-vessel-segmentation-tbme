@@ -4,3 +4,5 @@
 *.m~
 configuration/
 data/
+results/
+segmentation-model/

@@ -16,10 +16,10 @@
 
 
 % Folder where the data sets are located
-rootDatasets = '/Users/ignaciorlando/Documents/_vessels';
+rootDatasets = './data';
 
 % Folder where the results are going to be saved
-rootResults = '/Users/ignaciorlando/Documents/_vessels/segmentations';
+rootResults = './results';
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set

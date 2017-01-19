@@ -33,11 +33,11 @@ scale_to_downsample = [ ...
 ];
 
 % Folder where the data sets are located
-rootDatasets = '/Users/ignaciorlando/Documents/_vessels';
+rootDatasets = './data';
 
 % Folder where the results are going to be saved
-rootResults = '/Users/ignaciorlando/Documents/_vessels/segmentations';
+rootResults = './results';
 
 % Folder where the segmentation model is located
-modelLocation = '/Users/ignaciorlando/Documents/_vessels/segmentation-model';
+modelLocation = './segmentation-model';
 

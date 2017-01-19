@@ -26,12 +26,12 @@ datasets_names = {...
     'MESSIDOR' ...
 };
 
-% folder where images, masks and stuff are stored
-image_folder = '/Users/ignaciorlando/Documents/_vessels';
+% Folder where the data sets are located
+image_folder = './data';
 
-% folder where vessel segmentations will be saved
-output_segmentations_folder = '/Users/ignaciorlando/Documents/_vessels/segmentations';
+% Folder where the results are going to be saved
+output_segmentations_folder = './results';
 
-% The segmentation model has to be located in this folder
-modelLocation = '/Users/ignaciorlando/Documents/_vessels/segmentation-model';
+% Folder where the segmentation model is located
+modelLocation = './segmentation-model';
 

@@ -22,25 +22,6 @@ warning('off','all');
 % Configure the script
 config_train_sipaim_2016_model
 
-% Check if DRIVE-SIPAIM exists
-if exist(fullfile(rootDatasets, 'DRIVE-SIPAIM'), 'file') == 0
-    
-    % Initialize DRIVE-SIPAIM
-    mkdir(fullfile(rootDatasets, 'DRIVE-SIPAIM'));
-    
-    % Copy files
-    copyfile(fullfile(rootDatasets, 'DRIVE', 'training'), ...
-        fullfile(rootDatasets, 'DRIVE-SIPAIM', 'training'));
-    copyfile(fullfile(rootDatasets, 'DRIVE', 'validation'), ...
-        fullfile(rootDatasets, 'DRIVE-SIPAIM', 'training'));
-    copyfile(fullfile(rootDatasets, 'DRIVE', 'test'), ...
-        fullfile(rootDatasets, 'DRIVE-SIPAIM', 'validation'));
-    copyfile(fullfile(rootDatasets, 'DRIVE', 'test'), ...
-        fullfile(rootDatasets, 'DRIVE-SIPAIM', 'test'));
-    
-end
-
-
 % For each of the data sets
 results = cell(length(crfVersions), 1);
 
