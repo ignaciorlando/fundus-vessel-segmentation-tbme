@@ -68,14 +68,11 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     config.features.unary.unaryFeatures = zeros(config.features.numberFeatures, 1);
     config.features.unary.unaryFeatures(1) = 1;     % Nguyen
     config.features.unary.unaryFeatures(2) = 1;     % Soares
-    %config.features.unary.unaryFeatures(3) = 1;     % Zana
 
     % Pairwise features
     config.features.pairwise.pairwiseFeatures = zeros(config.features.numberFeatures, 1);
     config.features.pairwise.pairwiseFeaturesDimensions = ones(length(config.features.features),1);
     if ~strcmp(crfVersion, 'up')
-        %config.features.pairwise.pairwiseFeatures(1) = 1;  % Nguyen
-        %config.features.pairwise.pairwiseFeatures(2) = 1;  % Soares
         config.features.pairwise.pairwiseFeatures(3) = 1;  % Zana
     end
     

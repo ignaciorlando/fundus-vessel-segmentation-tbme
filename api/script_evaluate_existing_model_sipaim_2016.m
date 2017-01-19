@@ -17,11 +17,11 @@
 % cocient between them.
 % -------------------------------------------------------------------------
 %
-% Author: Jos? Ignacio Orlando, Eng., applied mathematics
+% Author: Jose Ignacio Orlando, Eng., applied mathematics
 % Pladema Institute, UNCPBA - CONICET
 % email address: jiorlando@conicet.gov.ar  
 % Website: github.com/ignaciorlando
-% Copyright 2017 - Jos? Ignacio Orlando, Matthew B. Blaschko
+% Copyright 2017 - Jose Ignacio Orlando, Matthew B. Blaschko
 
 warning('off','all');
 
