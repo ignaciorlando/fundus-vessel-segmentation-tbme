@@ -23,7 +23,7 @@ warning('off','all');
 config_train_sipaim_2016_model
 
 % For each of the data sets
-results = cell(llength(crfVersions), 1);
+results = cell(length(crfVersions), 1);
 
 % For each version of the CRF
 for crfver = 1 : length(crfVersions)
