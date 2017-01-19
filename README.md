@@ -84,13 +84,17 @@ We include code for preparing DRIVE data for training and evaluating both the SI
 ### Installing
 
  1. Create a fork of this repository, or clone it by doing:
+
 ```git
 $ git clone https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme
 ```
+
  2. Update submodules doing:
+
  ```git
  $ git submodule update --init --recursive
  ```
+
  3. Open MATLAB (I used MATLAB R2015a) and move to `fundus-vessel-segmentation-tbme` folder.
  4. Run `setup_segmentation_code` to compile all MEX files and to add necessary folders to the MATLAB path. This will also create a copy of the configuration files in ```./default_configuration```, putting them into a new folder, namely ```./configuration```.
  5. Everything is ready to run!
@@ -108,7 +112,7 @@ The repository is organized in the following folders:
   - ```./default_configuration```: contains all the default configuration files, that will be copied to ```./configuration``` when running ```setup_segmentation_code```. Any modification here will be committed if you push to your repository, so take that into account.
   - ```./evaluation```: contains functions to evaluate segmentation results compared to gold standard segmentations.
   - ```./external```: contains external libraries.
-  - ```./fundus-util``` : contains util functions that are needed by functions and scripts in ```./core``` .
+  - ```./fundus-util```: is a git submodule from a different repository. Please, remember to do ```git submodule update --init --recursive``` after cloning.
 
 By default, our code might create 3 additional folders that are ignored by git:
 
