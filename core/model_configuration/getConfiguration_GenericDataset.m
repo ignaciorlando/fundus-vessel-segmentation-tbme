@@ -1,5 +1,5 @@
 
-function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
+function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue, saveFeatures, scaleFactor)
 % getConfiguration_GenericDataset  Get a generic configuration structure 
 %   [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
 %   datasetName: name of the data set
@@ -24,7 +24,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
 
     % ---------------------------------------------------------------------
     % Scale factor   
-    config.scale_factor = 1;
+    config.scale_factor = scaleFactor;
     
     % ---------------------------------------------------------------------
     % Parameters to learn
@@ -59,7 +59,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     % ---------------------------------------------------------------------
     % General configuration
     [config] = getGeneralConfiguration(config);
-    config.compute_scores = 1;
+    config.compute_scores = saveFeatures;
     
     % ---------------------------------------------------------------------
     config.features.saveFeatures = 1;

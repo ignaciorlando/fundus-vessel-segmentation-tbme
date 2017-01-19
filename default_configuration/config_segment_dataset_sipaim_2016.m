@@ -19,21 +19,17 @@
 
 % Data sets to segment
 datasets_names = {...
-    'DRIVE' ...
-    fullfile('DIARETDB1', 'train') ...
-    fullfile('DIARETDB1', 'test') ...
-    'e-ophtha' ...
-    'MESSIDOR' ...
+    'WIDE' ...
 };
 
 % Folder where the data sets are located
 image_folder = './data';
 
 % Folder where the results are going to be saved
-output_segmentations_folder = './results';
+output_segmentations_folder = './data/results';
 
 % Folder where the segmentation model is located
-modelLocation = './segmentation-model';
+modelLocation = './data/segmentation-model/DRIVE-SIPAIM';
 
 % Decide whether to save intermediate features or not
 saveFeatures = true;

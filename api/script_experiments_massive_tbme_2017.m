@@ -39,8 +39,9 @@ for experiment = 1 : length(datasetsNames)
                                                    crfVersions{crfver}, ... % crf version
                                                    cValue ... % default C value
                                                    saveFeatures ...
+                                                   scaling_factors(experiment) ...
                                            );
-        config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData(experiment);
+        config.thereAreLabelsInTheTestData = (exist(fullfile(config.test_data_path, 'labels'), 'file') ~= 0);
         % Run vessel segmentation!
         results{experiment,crfver} = runVesselSegmentation(config);
         

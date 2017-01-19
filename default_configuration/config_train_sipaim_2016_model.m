@@ -23,7 +23,7 @@ rootResults = './results';
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set
-learnC = 1;
+learnC = 0;
 
 % CRF versions that are going to be evaluated
 crfVersions = {'fully-connected'};

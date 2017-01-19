@@ -24,11 +24,13 @@
 
 config_segment_dataset_sipaim_2016;
 
+vessel_of_interest = 0.87333;
+
 % for each data set
-for d = 1 : length(dataset_names)
+for d = 1 : length(datasets_names)
     
     % get current data set name and scale factor
-    current_dataset = dataset_names{d};
+    current_dataset = datasets_names{d};
     
     % analyzing data set
     fprintf('Processing data set %s\n', current_dataset);
@@ -69,7 +71,7 @@ for d = 1 : length(dataset_names)
     fprintf('Segmenting images\n');
     datasets_names = {fullfile(current_dataset, '_aux')};   
     rootDatasets = image_folder;
-    resultsPath = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
+    rootResults = output_segmentations_folder;
     mkdir(resultsPath);
     already_configured = true;
     script_evaluate_existing_model_sipaim_2016;
