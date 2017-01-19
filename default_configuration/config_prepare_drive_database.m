@@ -16,3 +16,6 @@ input_folder = '/Users/ignaciorlando/Downloads';
 
 % output folder
 output_folder = fullfile(pwd, 'data');
+
+% Decide whether to save intermediate features or not
+saveFeatures = true;

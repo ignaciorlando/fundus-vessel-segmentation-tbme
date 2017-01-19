@@ -35,3 +35,5 @@ output_segmentations_folder = './results';
 % Folder where the segmentation model is located
 modelLocation = './segmentation-model';
 
+% Decide whether to save intermediate features or not
+saveFeatures = true;

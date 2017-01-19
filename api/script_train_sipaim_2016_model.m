@@ -31,14 +31,19 @@ for crfver = 1 : length(crfVersions)
     % Get the configuration
     [config] = getConfiguration_GenericDataset_SIPAIM2016('DRIVE-SIPAIM', ... % data set name
                                                fullfile(rootDatasets, 'DRIVE-SIPAIM'), ... % data set folder
-                                               fullfile(rootResults, 'segmentation-model'), ... % results folder
+                                               fullfile(rootDatasets, 'results','DRIVE-SIPAIM'), ... % results folder
                                                learnC, ... % learn C?
                                                crfVersions{crfver}, ... % crf version
-                                               cValue ... % default C value
+                                               cValue, ... % default C value
+                                               saveFeatures ... %
                                        );
     config.thereAreLabelsInTheTestData = 1;
     % Run vessel segmentation!
-    results{crfver} = runVesselSegmentation(config);
+    [results, config, model] = runVesselSegmentation(config);
+    % Save model and configuration
+    mkdir(fullfile(rootDatasets, 'segmentation-model', 'DRIVE-SIPAIM'));
+    save(fullfile(rootDatasets, 'segmentation-model', 'DRIVE-SIPAIM', 'config.mat'), 'config');
+    save(fullfile(rootDatasets, 'segmentation-model', 'DRIVE-SIPAIM', 'model.mat'), 'model');
 
 end
 

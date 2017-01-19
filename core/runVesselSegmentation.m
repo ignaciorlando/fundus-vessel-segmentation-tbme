@@ -1,5 +1,5 @@
 
-function [results] = runVesselSegmentation(config)
+function [results, config, model] = runVesselSegmentation(config)
 
     % Open training data labels
     [trainingdata.labels] = openVesselLabels(strcat(config.training_data_path, filesep, 'labels'));

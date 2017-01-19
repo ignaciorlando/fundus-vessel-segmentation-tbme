@@ -1,5 +1,5 @@
 
-function [config] = getConfiguration_GenericDataset_SIPAIM2016(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
+function [config] = getConfiguration_GenericDataset_SIPAIM2016(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue, saveFeatures)
 % getConfiguration_GenericDataset_SIPAIM2016  Get a generic configuration structure 
 %   [config] = getConfiguration_GenericDataset(datasetName, datasetPath, resultsPath, learnC, crfVersion, cValue)
 %   datasetName: name of the data set
@@ -62,7 +62,7 @@ function [config] = getConfiguration_GenericDataset_SIPAIM2016(datasetName, data
     config.compute_scores = 1;
     
     % ---------------------------------------------------------------------
-    config.features.saveFeatures = 0;
+    config.features.saveFeatures = saveFeatures;
     
     % Unary features
     config.features.unary.unaryFeatures = zeros(config.features.numberFeatures, 1);

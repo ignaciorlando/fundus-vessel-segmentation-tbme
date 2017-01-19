@@ -109,8 +109,8 @@ The repository is organized in the following folders:
 By default, our code might create 3 additional folders that are ignored by git:
 
   - ```./data```: will contain the data sets.
-  - ```./results```: will contain the results obtained in the experiments.
-  - ```./segmentation_model```: will contain the model learned from DRIVE when reproducing SIPAIM 2016 method.
+  - ```./data/results```: will contain the results obtained in the experiments.
+  - ```./data/segmentation_model```: will contain the model learned from DRIVE when reproducing SIPAIM 2016 method.
 
 ## Running experiments
 

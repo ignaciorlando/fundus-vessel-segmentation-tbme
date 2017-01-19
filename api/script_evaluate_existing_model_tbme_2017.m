@@ -55,6 +55,8 @@ for i = 1 : length(datasets_names)
 
     % Assign downsample factor
     config.downsample_factor = scale_to_downsample(i);
+    % Determine if you want to save features or not
+    config.features.saveFeatures = saveFeatures;
     
     % Determine if there are test data
     config.thereAreLabelsInTheTestData = (exist(fullfile(config.test_data_path, 'labels'), 'file') ~= 0);

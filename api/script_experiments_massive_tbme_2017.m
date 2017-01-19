@@ -38,6 +38,7 @@ for experiment = 1 : length(datasetsNames)
                                                    learnC, ... % learn C?
                                                    crfVersions{crfver}, ... % crf version
                                                    cValue ... % default C value
+                                                   saveFeatures ...
                                            );
         config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData(experiment);
         % Run vessel segmentation!

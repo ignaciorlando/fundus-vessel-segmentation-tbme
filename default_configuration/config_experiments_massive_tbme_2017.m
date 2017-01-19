@@ -38,3 +38,6 @@ crfVersions = {'up', 'fully-connected'};
 
 % Default C value (it will be used only if learnC is 0)
 cValue = 10^2;
+
+% Decide whether to save intermediate features or not
+saveFeatures = true;

@@ -71,7 +71,8 @@ for d = 1 : length(dataset_names)
     rootDatasets = image_folder;
     resultsPath = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
     mkdir(resultsPath);
-    script_evaluate_existing_model;
+    already_configured = true;
+    script_evaluate_existing_model_sipaim_2016;
     
     % Delete all auxiliar folder
     try rmdir(fullfile(image_folder, current_dataset, '_aux'),'s'); catch end
