@@ -1,0 +1,3 @@
+[submodule "fundus-util"]
+	path = fundus-util
+	url = https://github.com/ignaciorlando/fundus-util.git
