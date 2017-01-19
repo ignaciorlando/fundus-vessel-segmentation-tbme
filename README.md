@@ -91,9 +91,9 @@ $ git clone https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme
  ```git
  $ git submodule update --init --recursive
  ```
- 2. Open MATLAB (I used MATLAB R2015a) and move to `fundus-vessel-segmentation-tbme` folder.
- 3. Run `setup_segmentation_code` to compile all MEX files and to add necessary folders to the MATLAB path. This will also create a copy of the configuration files in ```./default_configuration```, putting them into a new folder, namely ```./configuration```.
- 7. Everything is ready to run!
+ 3. Open MATLAB (I used MATLAB R2015a) and move to `fundus-vessel-segmentation-tbme` folder.
+ 4. Run `setup_segmentation_code` to compile all MEX files and to add necessary folders to the MATLAB path. This will also create a copy of the configuration files in ```./default_configuration```, putting them into a new folder, namely ```./configuration```.
+ 5. Everything is ready to run!
 
 > **Note:** We include binaries for Windows and Mac architectures, that were tested on Windows 7 and 10, and on a Macbook PRO Retina 2015 with macOS Sierra. In principle there would be no problem on using this system within other architectures or operating systems as far as you run ```setup_segmentation_code``` first.
 
