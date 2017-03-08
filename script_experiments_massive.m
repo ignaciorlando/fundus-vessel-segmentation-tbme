@@ -13,7 +13,7 @@ thereAreLabelsInTheTestData = 0;
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set
-learnC = 0;
+learnC = 1;
 % CRF versions that are going to be evaluated
 crfVersions = {'fully-connected'};
 
