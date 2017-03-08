@@ -54,7 +54,7 @@ function state = bundler(state, a, b, soft)
       state.K = [];
       state.f = [];
       state.w = [];
-      state.quadProgOpts = optimset('Algorithm', 'active-set', 'Display', 'off', 'MaxIter', 1000);
+      state.quadProgOpts = optimset('Display', 'off', 'MaxIter', 1000);
       return;
     end
 

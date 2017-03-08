@@ -33,11 +33,12 @@ function [results] = runVesselSegmentation(config)
     
     if (~config.learn.modelSelection)
         % Don't do model selection
-        [model, config.qualityOverValidation, config] = learnConfiguredCRF(trainingdata, validationdata, config);
+        [model, qualityOverValidation, config] = learnConfiguredCRF(trainingdata, validationdata, config);
     else
         % Do model selection
-        [model, config.C.value, config.qualityOverValidation, config] = completeModelSelection(trainingdata, validationdata, config);
+        [model, config.C.value, qualityOverValidation, config] = completeModelSelection(trainingdata, validationdata, config);
     end
+    config.qualityOverValidation = qualityOverValidation;
     
     % Evaluate the learned model on the test data    
     [results] = runVesselSegmentationUsingExistingModel(config, model);

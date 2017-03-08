@@ -9,16 +9,16 @@ rootResults = '/Users/ignaciorlando/Documents/_vessels/results';
 datasetsNames = {...
     'DRIVE' ...
 };
-thereAreLabelsInTheTestData = 1;
+thereAreLabelsInTheTestData = 0;
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set
-learnC = 1;
+learnC = 0;
 % CRF versions that are going to be evaluated
 crfVersions = {'fully-connected'};
 
 % C values
-cValue = 10^2;
+cValue = 10^0;
 
 
 % For each of the data sets

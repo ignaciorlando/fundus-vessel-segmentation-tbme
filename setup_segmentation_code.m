@@ -2,10 +2,13 @@
 root = pwd;
 
 % Add folders
+addpath(genpath(fullfile(root, 'Configuration')));
 addpath(genpath(fullfile(root, 'Features')));
 addpath(genpath(fullfile(root, 'Preprocessing')));
 addpath(genpath(fullfile(root, 'Segmentations')));
 addpath(genpath(fullfile(root, 'SOSVM')));
+addpath(genpath(fullfile(root, 'CRF')));
+addpath(genpath(fullfile(root, 'Util', 'other')));
 addpath(genpath(fullfile(root, 'Util', 'Evaluation')));
 addpath(genpath(fullfile(root, 'Util', 'vlfeat', 'toolbox')));
 
