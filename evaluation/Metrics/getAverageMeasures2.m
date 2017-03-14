@@ -6,14 +6,37 @@ function [averageQualityMeasures] = getAverageMeasures2(qualityMeasures)
 % INPUT: qualityMeasures: struct with arrays for each specific quality
 %        measure
     
-    averageQualityMeasures.se = mean(qualityMeasures.se);
-    averageQualityMeasures.sp = mean(qualityMeasures.sp);
-    averageQualityMeasures.acc = mean(qualityMeasures.acc);
-    averageQualityMeasures.precision = mean(qualityMeasures.precision);
-    averageQualityMeasures.recall = mean(qualityMeasures.recall);
-    averageQualityMeasures.fMeasure = mean(qualityMeasures.fMeasure);
-    averageQualityMeasures.matthews = mean(qualityMeasures.matthews);
-    averageQualityMeasures.dice = mean(qualityMeasures.dice);
+    if (isfield(qualityMeasures,'se'))
+        averageQualityMeasures.se = mean(qualityMeasures.se);
+    end
+    
+    if (isfield(qualityMeasures,'sp'))
+        averageQualityMeasures.sp = mean(qualityMeasures.sp);
+    end
+    
+    if (isfield(qualityMeasures,'acc'))
+        averageQualityMeasures.acc = mean(qualityMeasures.acc);
+    end
+    
+    if (isfield(qualityMeasures,'precision'))
+        averageQualityMeasures.precision = mean(qualityMeasures.precision);
+    end
+    
+    if (isfield(qualityMeasures,'recall'))
+        averageQualityMeasures.recall = mean(qualityMeasures.recall);
+    end
+    
+    if (isfield(qualityMeasures,'fMeasure'))
+        averageQualityMeasures.fMeasure = mean(qualityMeasures.fMeasure);
+    end
+    
+    if (isfield(qualityMeasures,'matthews'))
+        averageQualityMeasures.matthews = mean(qualityMeasures.matthews);
+    end
+    
+    if (isfield(qualityMeasures,'dice'))
+        averageQualityMeasures.dice = mean(qualityMeasures.dice);
+    end
     
     if (isfield(qualityMeasures,'arias'))
         averageQualityMeasures.arias = mean(qualityMeasures.arias);

@@ -91,7 +91,7 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         SaveSegmentations(config.resultsPath, config, current_results, model, testdata.filenames);
         
         % Save current performance
-        if ~isempty(allLabels)
+        if config.thereAreLabelsInTheTestData
             results.qualityMeasures.se(i) = current_results.qualityMeasures.se;
             results.qualityMeasures.sp(i) = current_results.qualityMeasures.sp;
             results.qualityMeasures.acc(i) = current_results.qualityMeasures.acc;
@@ -99,11 +99,12 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
             results.qualityMeasures.fMeasure(i) = current_results.qualityMeasures.fMeasure;
             results.qualityMeasures.matthews(i) = current_results.qualityMeasures.matthews;
         end
+        results.qualityMeasures.time(i) = current_results.qualityMeasures.time;
         
     end
        
     % Take average performance
-    if ~isempty(allLabels)
+    if config.thereAreLabelsInTheTestData
         results.averageQualityMeasures.se = mean(results.qualityMeasures.se);
         results.averageQualityMeasures.sp = mean(results.qualityMeasures.sp);
         results.averageQualityMeasures.acc = mean(results.qualityMeasures.acc);
@@ -111,5 +112,6 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         results.averageQualityMeasures.fMeasure = mean(results.qualityMeasures.fMeasure);
         results.averageQualityMeasures.matthews = mean(results.qualityMeasures.matthews);
     end
+    results.averageQualityMeasures.time = mean(results.qualityMeasures.time);
     
 end

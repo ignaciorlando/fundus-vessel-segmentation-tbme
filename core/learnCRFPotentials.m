@@ -25,7 +25,10 @@ function [bestModel, qualityOverValidation, bestParam] = learnCRFPotentials(conf
         [bestModel, bestParam, state] = sosvmCallback(config, trainingdata);
 
         % Segment the validation set
+        thereAreLabelsInTheTestData = config.thereAreLabelsInTheTestData;
+        config.thereAreLabelsInTheTestData = true;
         [segs, currentQualityMeasures] = getBunchSegmentations2(config, validationdata, bestModel);
+        config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData;
         qualityOverValidation = getAverageMeasures2(currentQualityMeasures)
         
         bestParam.qualitiesOnValidationSet = qualityOverValidation.qualities;
