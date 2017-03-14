@@ -6,6 +6,8 @@ function [averageQualityMeasures] = getAverageMeasures2(qualityMeasures)
 % INPUT: qualityMeasures: struct with arrays for each specific quality
 %        measure
     
+    averageQualityMeasures.time = mean(qualityMeasures.time);
+
     if (isfield(qualityMeasures,'se'))
         averageQualityMeasures.se = mean(qualityMeasures.se);
     end
