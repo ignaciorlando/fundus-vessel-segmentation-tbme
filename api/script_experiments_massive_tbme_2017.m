@@ -37,8 +37,8 @@ for experiment = 1 : length(datasetsNames)
                                                    fullfile(rootResults, datasetsNames{experiment}), ... % results folder
                                                    learnC, ... % learn C?
                                                    crfVersions{crfver}, ... % crf version
-                                                   cValue ... % default C value
-                                                   saveFeatures ...
+                                                   cValue, ... % default C value
+                                                   saveFeatures, ...
                                                    scaling_factors(experiment) ...
                                            );
         config.thereAreLabelsInTheTestData = (exist(fullfile(config.test_data_path, 'labels'), 'file') ~= 0);
