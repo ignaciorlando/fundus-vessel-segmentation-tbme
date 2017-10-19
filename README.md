@@ -42,11 +42,11 @@ year={2016},
 ```
 
 
-###Abstract
+### Abstract
 
 **Goal:** In this work, we present an extensive description and evaluation of our method for blood vessel segmentation in fundus images based on a discriminatively trained fully connected conditional random field model. **Methods:** Standard segmentation priors such as a Potts model or total variation usually fail when dealing with thin and elongated structures. We overcome this difficulty by using a conditional random field model with more expressive potentials, taking advantage of recent results enabling inference of fully connected models almost in real time. Parameters of the method are learned automatically using a structured output support vector machine, a supervised technique widely used for structured prediction in a number of machine learning applications. **Results:** Our method, trained with state of the art features, is evaluated both quantitatively and qualitatively on four publicly available datasets: DRIVE, STARE, CHASEDB1, and HRF. Additionally, a quantitative comparison with respect to other strategies is included. Conclusion: The experimental results show that this approach outperforms other techniques when evaluated in terms of sensitivity, F1-score, G-mean, and Matthews correlation coefficient. Additionally, it was observed that the fully connected model is able to better distinguish the desired structures than the local neighborhood-based approach. **Significance:** Results suggest that this method is suitable for the task of segmenting elongated structures, a feature that can be exploited to contribute with other medical and biological applications.
 
-###Project webpage and papers
+### Project webpage and papers
 
 If you want to download our segmentations, code or even the PDF files of our papers, please [follow this link to our project webpage](http://homes.esat.kuleuven.be/~mblaschk/projects/retina/).
 
@@ -98,7 +98,7 @@ $ git clone https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme
 
 > **Note:** We include binaries for Windows and Mac architectures, that were tested on Windows 7 and 10, and on a Macbook PRO Retina 2015 with macOS Sierra. In principle there would be no problem on using this system within other architectures or operating systems as far as you run ```setup_segmentation_code``` first.
 
-###Code organization
+### Code organization
 
 The repository is organized in the following folders:
 
