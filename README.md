@@ -123,6 +123,41 @@ Scripts for running experiments are in the `./api` folder. All filenames are qui
 
 In general, all experiments will require to edit a configuration script. They are all in the `./configuration` folder.
 
+## Extending the repository
+
+### Add your own custom features
+
+Adding your own custom features is relatively easy.
+
+1. Add your feature extraction function to ```./core/Features/Features```, following this signature:
+
+```matlab
+  output = <feature_name>(image, mask, unary, options)
+```
+
+where:
+
+  - ```output```: is the response of the input ```image``` to your feature function.
+  - ```image```: is the input image.
+  - ```mask```: is the input FOV mask.
+  - ```unary```: is a logical value indicating if the feature is being extracted for the unary potentials. If ```false```, it is used for the pairwise potentials. **I strongly recommend you to use a multidimensional version of your features when ```unary==true``` and a one-dimensional representation when ```unary==false```. Otherwise, the inference of the fully connected CRF will take a lot.**
+  - ```options```: is a MATLAB ```struct``` containing the required feature parameters as fields.
+
+2. Edit ```./core/model_configuration/getGeneralConfiguration.m``` accordingly:
+
+  1. Add a new field to the MATLAB struct ```options``` with the following format: ```<feature_name>.<parameter_name>```, where ```<feature_name>``` is the same name that you use for your custom feature extraction function and ```<parameter_name>``` is one of the parameters that your function needs.
+  2. Set custom values for all the parameters that you added to ```options.<feature_name>```.
+  3. Add a reference to your custom feature extraction function to ```config.features.features```, as ```@<feature_name>```, where ```<feature_name>``` is the name of your custom feature extraction function.
+  4. Add the name of your feature extraction method to ```config.features.featureNames```.
+  5. Add a reference to your options field in ```config.features.featureParameters```.
+
+> **Note:** Make sure that the options field added to ```config.features.featureParameters``` is in the same position than your ```<feature_name>``` function in the ```config.features.features``` cell array. Otherwise, your function will receive the wrong arguments and will fail.
+
+3. Following the previous steps you have added your custom feature extraction function to the repository. Now you need to indicate that you want to use it during the learning/inference process. To do so, you need to modify ```./core/model_configuration/getConfiguration_GenericDataset.m```:
+
+  - If you want to use your feature on the unary potentials, add a line ```config.features.unary.unaryFeatures(<N>) = 1;```, with ```<N>``` the position of your feature extraction function in ```config.features.features```.
+  - If you want to use other features, repeat the same process that you followed before, using the corresponding ```<N>``` values.
+  - If you want to use your feature on the pairwise potentials, modify the line ```config.features.pairwise.pairwiseFeatures(3) = 1;``` by changing 3 with your ```<N>``` value.
 
 ## Contributing
 
