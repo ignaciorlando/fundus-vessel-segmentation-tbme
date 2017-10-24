@@ -39,7 +39,7 @@ vl_setup;
 % Compile relevant files
 mex -outdir ./core/CRF/CRF_1.0/ ./core/CRF/CRF_1.0/fullyCRFwithGivenPairwises.cpp ./core/CRF/CRF_1.0/densecrf.cpp ./core/CRF/CRF_1.0/util.cpp 
 mex -outdir ./core/CRF/CRF_1.0/ ./core/CRF/CRF_1.0/pairwisePart.cpp ./core/CRF/CRF_1.0/util.cpp
-mex -output ./core/Features/Features/BCOSFIRE/COSFIRE/dilate ./core/Features/Features/BCOSFIRE/COSFIRE/dilateDisc.c
+mex -output ./core/Features/Features/BCOSFIRE/COSFIRE/dilate ./core/Features/Features/BCOSFIRE/COSFIRE/dilateDisc.cpp
 
 % Clean everything
 clear
