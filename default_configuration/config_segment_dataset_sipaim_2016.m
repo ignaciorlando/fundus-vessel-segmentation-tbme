@@ -17,9 +17,11 @@
 % Website: github.com/ignaciorlando
 % Copyright 2017 - Jose Ignacio Orlando, Matthew B. Blaschko
 
+clear, clc
+
 % Data sets to segment
 datasets_names = {...
-    'WIDE' ...
+    'DRISHTI-GS1' ...
 };
 
 % Folder where the data sets are located

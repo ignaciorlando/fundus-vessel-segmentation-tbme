@@ -29,7 +29,7 @@ addpath(genpath(fullfile(root, 'api')));
 addpath(genpath(fullfile(root, 'data_preparation')));
 addpath(genpath(fullfile(root, 'configuration')));
 addpath(genpath(fullfile(root, 'core')));
-addpath(genpath(fullfile(root, 'evaluation')));
+addpath(genpath(fullfile(root, 'evaluation')));  
 addpath(genpath(fullfile(root, 'fundus-util')));
 addpath(genpath(fullfile(root, 'external', 'vlfeat', 'toolbox')));
 
@@ -42,8 +42,12 @@ mex -outdir ./core/CRF/CRF_1.0/ ./core/CRF/CRF_1.0/pairwisePart.cpp ./core/CRF/C
 mex -output ./core/Features/Features/BCOSFIRE/COSFIRE/dilate ./core/Features/Features/BCOSFIRE/COSFIRE/dilateDisc.cpp
 
 % Clean everything
-clear
 clc
 
 % Print a nice message
 fprintf('Vessel segmentation setup finished. Everything was fine :-)\n');
+if (exist(fullfile(root, 'fundus-util'), 'dir') == 0)
+    fprintf('Run git submodule update --init --recursive'); 
+end
+
+clear
