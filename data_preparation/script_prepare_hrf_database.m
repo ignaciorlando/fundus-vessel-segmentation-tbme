@@ -28,6 +28,8 @@ if exist(zip_filename, 'file') == 0
     fprintf('Downloading HRF data set...\n');
     websave(fullfile(output_folder, 'tmp', 'all.zip'), ...
         'https://www5.cs.fau.de/fileadmin/research/datasets/fundus-images/all.zip');
+else
+    fprintf('HRF zip file found. Skipping download...\n');
 end
 
 % check if the file exists
@@ -41,130 +43,85 @@ else
 end
 
 % the input folder will be output_folder + tmp
-input_folder = fullfile(output_folder, 'tmp', 'HRF');
+input_folder = fullfile(output_folder, 'tmp');
 
 %% generate HRF
 
-fprintf('Preparing DRIVE-SIPAIM...\n');
+fprintf('Resizing images on HRF to half of their resolution...\n');
 
-% prepare output folder sipaim
-output_folder_sipaim = fullfile(output_folder, 'DRIVE-SIPAIM');
-mkdir(output_folder_sipaim);
+% prepare data folders
+input_image_folder = fullfile(input_folder, 'images');
+input_labels_folder = fullfile(input_folder, 'manual1');
+input_fov_mask_folder = fullfile(input_folder, 'mask');
 
-% copy the training set
-mkdir(fullfile(output_folder_sipaim, 'training', 'images'));
-copyfile(fullfile(input_folder, 'training', 'images'), ...
-    fullfile(output_folder_sipaim, 'training', 'images'));
+% resize all the images to half of their original size
+image_filenames = getMultipleImagesFileNames(input_image_folder);
+labels_filenames = getMultipleImagesFileNames(input_labels_folder);
+fov_masks_filenames = getMultipleImagesFileNames(input_fov_mask_folder);
 
-mkdir(fullfile(output_folder_sipaim, 'training', 'masks'));
-copyfile(fullfile(input_folder, 'training', 'mask'), ...
-    fullfile(output_folder_sipaim, 'training', 'masks'));
-
-mkdir(fullfile(output_folder_sipaim, 'training', 'labels'));
-copyfile(fullfile(input_folder, 'training', '1st_manual'), ...
-    fullfile(output_folder_sipaim, 'training', 'labels'));
-
-% copy the validation set (will be the test set)
-mkdir(fullfile(output_folder_sipaim, 'validation', 'images'));
-copyfile(fullfile(input_folder, 'test', 'images'), ...
-    fullfile(output_folder_sipaim, 'validation', 'images'));
-
-mkdir(fullfile(output_folder_sipaim, 'validation', 'masks'));
-copyfile(fullfile(input_folder, 'test', 'mask'), ...
-    fullfile(output_folder_sipaim, 'validation', 'masks'));
-
-mkdir(fullfile(output_folder_sipaim, 'validation', 'labels'));
-copyfile(fullfile(input_folder, 'test', '1st_manual'), ...
-    fullfile(output_folder_sipaim, 'validation', 'labels'));
-
-% copy the test set
-mkdir(fullfile(output_folder_sipaim, 'test', 'images'));
-copyfile(fullfile(input_folder, 'test', 'images'), ...
-    fullfile(output_folder_sipaim, 'test', 'images'));
-
-mkdir(fullfile(output_folder_sipaim, 'test', 'masks'));
-copyfile(fullfile(input_folder, 'test', 'mask'), ...
-    fullfile(output_folder_sipaim, 'test', 'masks'));
-
-mkdir(fullfile(output_folder_sipaim, 'test', 'labels'));
-copyfile(fullfile(input_folder, 'test', '1st_manual'), ...
-    fullfile(output_folder_sipaim, 'test', 'labels'));
-
-%% generate DRIVE data set with validation set
-
-fprintf('Preparing DRIVE...\n');
-
-% prepare output folder sipaim
-output_folder_drive = fullfile(output_folder, 'DRIVE');
-mkdir(output_folder_drive);
-
-% copy the training set
-mkdir(fullfile(output_folder_drive, 'training', 'images'));
-copyfile(fullfile(input_folder, 'training', 'images'), ...
-    fullfile(output_folder_drive, 'training', 'images'));
-
-mkdir(fullfile(output_folder_drive, 'training', 'masks'));
-copyfile(fullfile(input_folder, 'training', 'mask'), ...
-    fullfile(output_folder_drive, 'training', 'masks'));
-
-mkdir(fullfile(output_folder_drive, 'training', 'labels'));
-copyfile(fullfile(input_folder, 'training', '1st_manual'), ...
-    fullfile(output_folder_drive, 'training', 'labels'));
-
-% copy the validation set (will be the test set)
-mkdir(fullfile(output_folder_drive, 'validation', 'images'));
-copyfile(fullfile(input_folder, 'training', 'images'), ...
-    fullfile(output_folder_drive, 'validation', 'images'));
-
-mkdir(fullfile(output_folder_drive, 'validation', 'masks'));
-copyfile(fullfile(input_folder, 'training', 'mask'), ...
-    fullfile(output_folder_drive, 'validation', 'masks'));
-
-mkdir(fullfile(output_folder_drive, 'validation', 'labels'));
-copyfile(fullfile(input_folder, 'training', '1st_manual'), ...
-    fullfile(output_folder_drive, 'validation', 'labels'));
-
-% copy the test set
-mkdir(fullfile(output_folder_drive, 'test', 'images'));
-copyfile(fullfile(input_folder, 'test', 'images'), ...
-    fullfile(output_folder_drive, 'test', 'images'));
-
-mkdir(fullfile(output_folder_drive, 'test', 'masks'));
-copyfile(fullfile(input_folder, 'test', 'mask'), ...
-    fullfile(output_folder_drive, 'test', 'masks'));
-
-mkdir(fullfile(output_folder_drive, 'test', 'labels'));
-copyfile(fullfile(input_folder, 'test', '1st_manual'), ...
-    fullfile(output_folder_drive, 'test', 'labels'));
-
-% sample 5 images randomly
-validation_idx = sort(datasample(1:20,5, 'Replace', false));
-
-% get filenames
-input_folder_for_images = dir(fullfile(output_folder_drive, 'validation', 'images', '*.tif'));
-input_folder_for_images = {input_folder_for_images.name};
-
-input_folder_for_labels = dir(fullfile(output_folder_drive, 'validation', 'labels', '*.gif'));
-input_folder_for_labels = {input_folder_for_labels.name};
-
-input_folder_for_masks = dir(fullfile(output_folder_drive, 'validation', 'masks', '*.gif'));
-input_folder_for_masks = {input_folder_for_masks.name};
-
-% for each folder
-for i = 1 : length(input_folder_for_images)
+for i = 1 : length(image_filenames)
     
-    % if the idx is in the training set
-    if sum(find(i==validation_idx)) == 0
-        delete(fullfile(output_folder_drive, 'validation', 'images', input_folder_for_images{i}));
-        delete(fullfile(output_folder_drive, 'validation', 'labels', input_folder_for_labels{i}));
-        delete(fullfile(output_folder_drive, 'validation', 'masks', input_folder_for_masks{i}));
-    else
-        delete(fullfile(output_folder_drive, 'training', 'images', input_folder_for_images{i}));
-        delete(fullfile(output_folder_drive, 'training', 'labels', input_folder_for_labels{i}));
-        delete(fullfile(output_folder_drive, 'training', 'masks', input_folder_for_masks{i}));
-    end
+    % get current image filename
+    current_image_filename = image_filenames{i};
+    
+    % open the images
+    I = imread(fullfile(input_image_folder, current_image_filename));
+    gt = imread(fullfile(input_labels_folder, labels_filenames{i}));
+    fov_mask = imread(fullfile(input_fov_mask_folder, fov_masks_filenames{i}));
+    
+    % resize them
+    I = imresize(I, 0.5);
+    gt = imresize(gt, 0.5, 'nearest');
+    fov_mask = imresize(fov_mask, 0.5, 'nearest');
+    
+    % remove the jpeg extension
+    current_image_filename = strcat(current_image_filename(1:end-4), '.png');
+    delete(fullfile(input_image_folder, image_filenames{i}));
+    image_filenames{i} = current_image_filename;
+    
+    % save the rescaled images
+    imwrite(I, fullfile(input_image_folder, current_image_filename));
+    imwrite(gt, fullfile(input_labels_folder, labels_filenames{i}));
+    imwrite(fov_mask, fullfile(input_fov_mask_folder, fov_masks_filenames{i}));
+    
 end
+
+% prepare output folders
+output_folder_hrf = fullfile(output_folder, 'HRF');
+mkdir(output_folder_hrf);
+
+fprintf('Copying images...\n');
+
+for i = 1 : length(image_filenames)
+    
+    if i <= 12
+        dataset_tag = 'training';
+    elseif (i > 12) && (i <= 15)
+        dataset_tag = 'validation';
+    else
+        dataset_tag = 'test';
+    end
+    
+    output_images_folder = fullfile(output_folder_hrf, dataset_tag, 'images');
+    output_labels_folder = fullfile(output_folder_hrf, dataset_tag, 'labels');
+    output_masks_folder = fullfile(output_folder_hrf, dataset_tag, 'masks');
+        
+    if (i==1) || (i==13) || (i==16)
+        mkdir(output_images_folder)
+        mkdir(output_labels_folder)
+        mkdir(output_masks_folder)
+    end
+    
+    copyfile(fullfile(input_image_folder, image_filenames{i}), ...
+        output_images_folder);
+    copyfile(fullfile(input_labels_folder, labels_filenames{i}), ...
+        output_labels_folder);
+    copyfile(fullfile(input_fov_mask_folder, fov_masks_filenames{i}), ...
+        output_masks_folder);
+    
+end
+
 
 %% delete tmp folder
 rmdir(fullfile(output_folder, 'tmp'), 's');
-fprintf('DRIVE data preparation finished.\n');
+fprintf('HRF data preparation finished.\n');
