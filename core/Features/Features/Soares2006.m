@@ -1,6 +1,6 @@
 function [features] = Soares2006(I, mask, unary, options)
 %
-% Copyright (C) 2006  João Vitor Baldini Soares
+% Copyright (C) 2006  Jo?o Vitor Baldini Soares
 %
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -25,6 +25,7 @@ if (~exist('options','var'))
 else
     scales = options.scales;
 end
+scales = double(scales);
 
 if (~isfield(options, 'dontpreprocess'))
     I = double(I) - double(medfilt2(uint8(I), [50 50]));
