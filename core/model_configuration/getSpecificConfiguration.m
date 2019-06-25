@@ -39,6 +39,8 @@ function [config] = getGeneralConfiguration(config)
             options.Zana2001.l = 15;
             options.Zana2001.winsize = 7;
             options.Zana2001.Intensities = options.Intensities;
+            % Theta_p learning
+            config.theta_p.values = [3 3 3];
         case 'STARE'
             % Intensities
             options.Intensities.winsize = 35;
@@ -48,43 +50,47 @@ function [config] = getGeneralConfiguration(config)
             options.Nguyen2013.w = 16;   
             options.Nguyen2013.step = 4;
             % Soares
-            options.Soares2006.scales = [3];
+            options.Soares2006.scales = 3;
             % Zana
             options.Zana2001.l = 18;
             options.Zana2001.winsize = 7;
             options.Zana2001.Intensities = options.Intensities;
+            % Theta_p learning
+            config.theta_p.values = [15 15 15];
         case 'CHASEDB1'
             % Intensities
             options.Intensities.winsize = 35;
             options.Intensities.fakepad_extension = config.preprocessing.fakepad_extension;
             options.Intensities.filter = 'median';
             % Nguyen
-            options.Nguyen2013.w = ceil(15 * config.scale_factor);   
-            options.Nguyen2013.step = ceil(2 * config.scale_factor);
+            options.Nguyen2013.w = 32;   
+            options.Nguyen2013.step = 8;
             % Soares
-            options.Soares2006.scales = ceil([2 3 4 5] * config.scale_factor);
+            options.Soares2006.scales = [5 6 9];
             % Zana
-            options.Zana2001.l = ceil(9 * config.scale_factor);
-            options.Zana2001.winsize = ceil(7 * config.scale_factor);
+            options.Zana2001.l = 23;
+            options.Zana2001.winsize = 7;
             options.Zana2001.Intensities = options.Intensities;
+            % Theta_p learning
+            config.theta_p.values = [3 3 3];
         case 'HRF'
             % Intensities
             options.Intensities.winsize = 35;
             options.Intensities.fakepad_extension = config.preprocessing.fakepad_extension;
             options.Intensities.filter = 'median';
             % Nguyen
-            options.Nguyen2013.w = ceil(15 * config.scale_factor);   
-            options.Nguyen2013.step = ceil(2 * config.scale_factor);
+            options.Nguyen2013.w = 54;   
+            options.Nguyen2013.step = 9;
             % Soares
-            options.Soares2006.scales = ceil([2 3 4 5] * config.scale_factor);
+            options.Soares2006.scales = [8 9 12];
             % Zana
-            options.Zana2001.l = ceil(9 * config.scale_factor);
-            options.Zana2001.winsize = ceil(7 * config.scale_factor);
+            options.Zana2001.l = 40;
+            options.Zana2001.winsize = 7;
             options.Zana2001.Intensities = options.Intensities;
+            % Theta_p learning
+            config.theta_p.values = [11 11 11];
     end
     
-
-        
     % RESULTS ------------------------------------------------------------
 
     % General feature configuration
@@ -112,10 +118,6 @@ function [config] = getGeneralConfiguration(config)
     if strcmp(config.crfVersion, 'local-neighborhood-based') % in case the method is local-neighborhood based
         config.learn.theta_p = 0;
     end
-
-    % Theta_p learning
-    config.theta_p.values = [3 7 5];
-    config.theta_p.values = config.theta_p.values * config.scale_factor;
 
     % ---------------------------------------------------------------------
     % Constants

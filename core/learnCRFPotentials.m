@@ -7,6 +7,7 @@ function [bestModel, qualityOverValidation, bestParam] = learnCRFPotentials(conf
         config.modelSelectionMetric = 'matthews';
     end
     better = -Inf;
+    config.thereAreLabelsInTheTestData = true;
 
     % If you want to find the best value of C according to the validation set
     if (config.learn.C == 1)
@@ -25,10 +26,7 @@ function [bestModel, qualityOverValidation, bestParam] = learnCRFPotentials(conf
         [bestModel, bestParam, state] = sosvmCallback(config, trainingdata);
 
         % Segment the validation set
-        thereAreLabelsInTheTestData = config.thereAreLabelsInTheTestData;
-        config.thereAreLabelsInTheTestData = true;
         [segs, currentQualityMeasures] = getBunchSegmentations2(config, validationdata, bestModel);
-        config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData;
         qualityOverValidation = getAverageMeasures2(currentQualityMeasures)
         
         bestParam.qualitiesOnValidationSet = qualityOverValidation.qualities;

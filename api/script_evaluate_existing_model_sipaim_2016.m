@@ -42,7 +42,7 @@ for i = 1 : length(datasets_names)
     config.features.saveFeatures = 1;
     
     % Set the results path
-    if (~strcmp(rootResults, 'training'));
+    if (~strcmp(rootResults, 'training'))
         if strcmp(config.crfVersion, 'up')
             resultsPath = fullfile(rootResults, datasets_names{i});
         else

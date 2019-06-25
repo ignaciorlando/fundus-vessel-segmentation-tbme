@@ -32,8 +32,11 @@ function [results, config, model] = runVesselSegmentation(config)
     
     
     if (~config.learn.modelSelection)
+        thereAreLabelsInTheTestData = config.thereAreLabelsInTheTestData;
+        config.thereAreLabelsInTheTestData = 1;
         % Don't do model selection
         [model, qualityOverValidation, config] = learnConfiguredCRF(trainingdata, validationdata, config);
+        config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData;
     else
         % Do model selection
         [model, config.C.value, qualityOverValidation, config] = completeModelSelection(trainingdata, validationdata, config);
